@@ -2,7 +2,7 @@
 
 using Domain.Entities.Base;
 
-public class Attachment : Entity
+public class FileStorage : Entity
 {
     public string FileName { get; set; }
     public string FileUrl { get; set; }
