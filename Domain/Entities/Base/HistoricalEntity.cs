@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities.BaseEntities;
+﻿namespace Domain.Entities.Base;
 
-public interface IHistoricalEntity
+public class HistoricalEntity : Entity
 {
     public DateTime ValidFrom { get; set; }
     public DateTime? ValidTo { get; set; }
