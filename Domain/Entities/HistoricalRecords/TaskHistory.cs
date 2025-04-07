@@ -1,4 +1,4 @@
-﻿namespace Domain.Entities.History;
+﻿namespace Domain.Entities.HistoricalRecords;
 
 using Domain.Entities.Base;
 using Domain.Enumerations;
