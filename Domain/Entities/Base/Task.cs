@@ -1,7 +1,7 @@
-﻿namespace Domain.Entities.Base;
-
-using Domain.Entities.Relations;
+﻿using Domain.Entities.Relations;
 using Domain.Enumerations;
+
+namespace Domain.Entities.Base;
 
 public abstract class Task : AuditableEntity
 {

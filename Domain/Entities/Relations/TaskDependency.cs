@@ -2,6 +2,7 @@
 using Domain.Enumerations;
 
 namespace Domain.Entities.Relations;
+
 public sealed class TaskDependency : Entity
 {
     public Guid TaskId { get; set; }

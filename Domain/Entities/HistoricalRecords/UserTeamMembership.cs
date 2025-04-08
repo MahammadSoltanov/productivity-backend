@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities.HistoricalRecords
+﻿using Domain.Entities.Base;
 
-using Domain.Entities.Base;
+namespace Domain.Entities.HistoricalRecords;
 
 public sealed class UserTeamMembership : HistoricalEntity
 {

@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities.Relations;
+﻿using Domain.Entities.Base;
 
-using Domain.Entities.Base;
+namespace Domain.Entities.Relations;
 
 public class TaskAssignment : Entity
 {

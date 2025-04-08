@@ -1,6 +1,7 @@
 ﻿using Domain.Entities.Base;
 
 namespace Domain.Entities.Relations;
+
 public class TaskAttachment : Entity
 {
     public FileStorage Attachment { get; set; }

@@ -1,6 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities.Base;
 
-using Domain.Entities.Base;
+namespace Domain.Entities;
 
 public class FileStorage : Entity
 {

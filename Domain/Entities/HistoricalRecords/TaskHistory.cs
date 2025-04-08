@@ -1,7 +1,7 @@
-﻿namespace Domain.Entities.HistoricalRecords;
-
-using Domain.Entities.Base;
+﻿using Domain.Entities.Base;
 using Domain.Enumerations;
+
+namespace Domain.Entities.HistoricalRecords;
 
 public class TaskHistory : HistoricalEntity
 {
