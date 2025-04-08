@@ -19,4 +19,5 @@ public sealed class Subtask : Task
         }
     }
 
+    public Story Story { get; set; }
 }

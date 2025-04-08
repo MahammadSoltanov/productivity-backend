@@ -20,4 +20,6 @@ public sealed class Story : Task
     }
 
     public ICollection<Subtask>? Subtasks { get; set; }
+
+    public Epic Epic { get; set; }
 }
