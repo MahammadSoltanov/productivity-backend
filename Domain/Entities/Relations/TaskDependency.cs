@@ -8,5 +8,5 @@ public sealed class TaskDependency : Entity
     public Task Task { get; set; }
     public Guid DependentTaskId { get; set; }
     public Task DependentTask { get; set; }
-    public TaskType DependentTaskType { get; set; } // Enum: Epic, Story, Subtask
+    public TaskType DependentTaskType { get; set; }
 }
