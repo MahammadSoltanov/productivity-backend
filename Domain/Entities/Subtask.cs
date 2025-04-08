@@ -8,7 +8,12 @@ public sealed class Subtask : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public ICollection<TaskDependency> TaskDependencies
+    public Subtask(User assignee, string title, Workspace workspace, User creator) : base(title, workspace, creator)
+    {
+        Assignee = assignee;
+    }
+
+    public new ICollection<TaskDependency> TaskDependencies
     {
         get => _taskDependencies;
         set
@@ -19,5 +24,7 @@ public sealed class Subtask : Task
         }
     }
 
-    public Story Story { get; set; }
+    public Story? Story { get; set; }
+    public Epic? Epic { get; set; }
+    public new User Assignee { get; set; }
 }

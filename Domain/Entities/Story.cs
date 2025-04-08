@@ -8,7 +8,12 @@ public sealed class Story : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public ICollection<TaskDependency> TaskDependencies
+    public Story(string title, Workspace workspace, User creator, Epic epic) : base(title, workspace, creator)
+    {
+        Epic = epic;
+    }
+
+    public new ICollection<TaskDependency> TaskDependencies
     {
         get => _taskDependencies;
         set

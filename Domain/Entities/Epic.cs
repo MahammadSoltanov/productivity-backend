@@ -8,7 +8,11 @@ public sealed class Epic : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public ICollection<TaskDependency> TaskDependencies
+    public Epic(string title, Workspace workspace, User creator) : base(title, workspace, creator)
+    {
+    }
+
+    public new ICollection<TaskDependency> TaskDependencies
     {
         get => _taskDependencies;
         set
@@ -20,5 +24,6 @@ public sealed class Epic : Task
     }
 
 
-    public ICollection<Story>? Stories { get; set; }
+    public ICollection<Story> Stories { get; set; } = new List<Story>();
+    public ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
 }
