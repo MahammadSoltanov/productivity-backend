@@ -4,8 +4,16 @@ namespace Domain.Entities.Relations;
 
 public class TaskAttachment : Entity
 {
-    public FileStorage Attachment { get; set; }
-    public Guid AttachmentId { get; set; }
-    public Task Task { get; set; }
-    public Guid TaskId { get; set; }
+    public TaskAttachment(FileStorage attachment, Task task)
+    {
+        Attachment = attachment;
+        AttachmentId = attachment.Id;
+        Task = task;
+        TaskId = task.Id;
+    }
+
+    public FileStorage Attachment { get; private set; }
+    public Guid AttachmentId { get; private set; }
+    public Task Task { get; private set; }
+    public Guid TaskId { get; private set; }
 }

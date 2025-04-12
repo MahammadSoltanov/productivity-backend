@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Relations;
+﻿using Domain.Constants.Epic;
+using Domain.Entities.Relations;
 using Domain.Enumerations;
 using Domain.Exceptions.Task;
 
@@ -18,7 +19,7 @@ public sealed class Epic : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Epic))
-                throw new InvalidTaskDependencyException("Epics can only have dependencies of type Epic.");
+                throw new InvalidTaskDependencyException(EpicErrorMessages.InvalidEpicDependency);
             _taskDependencies = value;
         }
     }

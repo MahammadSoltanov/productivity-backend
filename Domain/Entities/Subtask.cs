@@ -8,7 +8,7 @@ public sealed class Subtask : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public Subtask(User assignee, string title, Workspace workspace, User creator) : base(title, workspace, creator)
+    public Subtask(User assignee, string title, Workspace workspace, User creator, Story story) : base(title, workspace, creator)
     {
         Assignee = assignee;
     }
@@ -19,12 +19,12 @@ public sealed class Subtask : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Subtask))
-                throw new InvalidTaskDependencyException("Subtasks can only have dependencies of type Subtask.");
+                throw new InvalidTaskDependencyException();
             _taskDependencies = value;
         }
     }
 
-    public Story? Story { get; set; }
-    public Epic? Epic { get; set; }
+    public Guid? StoryId { get; set; }
+    public Guid? EpicId { get; set; }
     public new User Assignee { get; set; }
 }
