@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+  
     <Folder Include="Common\" />
     <Folder Include="Interfaces\" />
-    <Folder Include="Events\" />
-    <Folder Include="Constants\" />
+    <Folder Include="Constants\Team\" />
+    <Folder Include="Events\" />    
     <Folder Include="Specifications\" />
     <Folder Include="Services\" />
     <Folder Include="ValueObjects\" />

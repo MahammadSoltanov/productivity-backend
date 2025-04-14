@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Relations;
+﻿using Domain.Constants.Story;
+using Domain.Entities.Relations;
 using Domain.Enumerations;
 using Domain.Exceptions.Task;
 
@@ -8,9 +9,9 @@ public sealed class Story : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public Story(string title, Workspace workspace, User creator, Epic epic) : base(title, workspace, creator)
+    public Story(string title, Workspace workspace, User creator, Guid epicId) : base(title, workspace, creator)
     {
-        Epic = epic;
+        EpicId = epicId;
     }
 
     public new ICollection<TaskDependency> TaskDependencies
@@ -19,12 +20,11 @@ public sealed class Story : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Story))
-                throw new InvalidTaskDependencyException("Stories can only have dependencies of type Story.");
+                throw new InvalidTaskDependencyException(StoryErrorMessages.InvalidStoryDependency);
             _taskDependencies = value;
         }
     }
 
     public ICollection<Subtask>? Subtasks { get; set; }
-
-    public Epic Epic { get; set; }
+    public Guid EpicId { get; private set; }
 }
