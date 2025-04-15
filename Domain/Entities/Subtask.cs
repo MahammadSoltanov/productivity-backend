@@ -1,4 +1,5 @@
-﻿using Domain.Entities.Relations;
+﻿using Domain.Constants.Subtask;
+using Domain.Entities.Relations;
 using Domain.Enumerations;
 using Domain.Exceptions.Task;
 
@@ -19,7 +20,7 @@ public sealed class Subtask : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Subtask))
-                throw new InvalidTaskDependencyException();
+                throw new InvalidTaskDependencyException(SubtaskErrorMessages.InvalidStoryDependency);
             _taskDependencies = value;
         }
     }
