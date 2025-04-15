@@ -1,7 +1,6 @@
-﻿namespace Domain.Constants.Subtask
+﻿namespace Domain.Constants.Subtask;
+
+internal static class SubtaskErrorMessages
 {
-    internal static class SubtaskErrorMessages
-    {
-        public static string InvalidStoryDependency = "Subtasks can only have dependencies of type Subtask.";
-    }
+    public static string InvalidStoryDependency = "Subtasks can only have dependencies of type Subtask.";
 }
