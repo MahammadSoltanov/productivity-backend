@@ -3,6 +3,8 @@
 public enum UserRole
 {
     Admin,
-    Manager,
+    CompanyManager,
+    WorkspaceManager,
+    TeamLeader,
     Member
 }
