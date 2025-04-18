@@ -4,12 +4,10 @@ namespace Domain.Entities.HistoricalRecords;
 
 public sealed class TeamWorkspaceMembership : HistoricalEntity
 {
-    public TeamWorkspaceMembership(Team team, Workspace workspace)
+    public TeamWorkspaceMembership(Guid teamId, Guid workspaceId)
     {
-        Team = team;
-        TeamId = team.Id;
-        Workspace = workspace;
-        WorkspaceId = workspace.Id;
+        TeamId = teamId;
+        WorkspaceId = workspaceId;
     }
 
     public Guid TeamId { get; private set; }

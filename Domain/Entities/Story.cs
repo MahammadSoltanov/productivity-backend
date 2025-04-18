@@ -9,7 +9,7 @@ public sealed class Story : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public Story(string title, Workspace workspace, User creator, Guid epicId) : base(title, workspace, creator)
+    public Story(string title, Guid workspaceId, Guid creatorId, Guid epicId) : base(title, workspaceId, creatorId)
     {
         EpicId = epicId;
     }

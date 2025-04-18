@@ -5,9 +5,18 @@ namespace Domain.Entities.HistoricalRecords;
 
 public class TaskHistory : HistoricalEntity
 {
-    public Guid TaskId { get; set; }
-    public TaskStatus Status { get; set; }
-    public TaskPriority Priority { get; set; }
-    public TaskType TaskType { get; set; }
-    public DateTime StatusChangedAt { get; set; }
+    public TaskHistory(Guid taskId, TaskStatus status, TaskPriority priority, TaskType taskType)
+    {
+        TaskId = taskId;
+        Status = status;
+        Priority = priority;
+        TaskType = taskType;
+        StatusChangedAt = DateTime.UtcNow;
+    }
+
+    public Guid TaskId { get; private set; }
+    public TaskStatus Status { get; private set; }
+    public TaskPriority Priority { get; private set; }
+    public TaskType TaskType { get; private set; }
+    public DateTime StatusChangedAt { get; private set; }
 }

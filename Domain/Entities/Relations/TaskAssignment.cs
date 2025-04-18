@@ -4,12 +4,10 @@ namespace Domain.Entities.Relations;
 
 public class TaskAssignment : Entity
 {
-    public TaskAssignment(Task task, User assignee)
+    public TaskAssignment(Guid taskId, Guid assigneeId)
     {
-        Task = task;
-        TaskId = task.Id;
-        Assignee = assignee;
-        AssigneeId = assignee.Id;
+        TaskId = taskId;
+        AssigneeId = assigneeId;
     }
 
     public Guid TaskId { get; private set; }

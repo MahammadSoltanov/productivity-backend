@@ -5,11 +5,11 @@ namespace Domain.Entities.Base;
 
 public abstract class Task : AuditableEntity
 {
-    protected Task(string title, Workspace workspace, User creator)
+    protected Task(string title, Guid workspaceId, Guid creatorId)
     {
         Title = title;
-        Workspace = workspace;
-        Creator = creator;
+        WorkspaceId = workspaceId;
+        CreatorId = creatorId;
     }
 
     public string Title { get; set; }

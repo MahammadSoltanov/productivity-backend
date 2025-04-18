@@ -5,12 +5,10 @@ namespace Domain.Entities.Relations;
 
 public sealed class TaskDependency : Entity
 {
-    public TaskDependency(Task task, Task dependentTask, TaskType dependentTaskType)
+    public TaskDependency(Guid taskId, Guid dependentTaskId, TaskType dependentTaskType)
     {
-        Task = task;
-        TaskId = task.Id;
-        DependentTask = dependentTask;
-        DependentTaskId = dependentTask.Id;
+        TaskId = taskId;
+        DependentTaskId = dependentTaskId;
         DependentTaskType = dependentTaskType;
     }
 

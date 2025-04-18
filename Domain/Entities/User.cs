@@ -14,6 +14,7 @@ public sealed class User : AuditableEntity
     public string? Name { get; set; }
     public string? Surname { get; set; }
     public string Email { get; set; }
+    public UserRole Role { get; set; }
     public string? PasswordHash { get; set; }
     public AuthenticationProvider AuthenticationProvider { get; set; }
     public ICollection<UserTeamMembership> TeamMemberships { get; set; } = new List<UserTeamMembership>();

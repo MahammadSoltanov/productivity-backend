@@ -9,7 +9,7 @@ public sealed class Subtask : Task
 {
     private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
 
-    public Subtask(User assignee, string title, Workspace workspace, User creator, Story story) : base(title, workspace, creator)
+    public Subtask(User assignee, string title, Guid workspaceId, Guid creatorId, Story story) : base(title, workspaceId, creatorId)
     {
         Assignee = assignee;
     }
