@@ -1,7 +1,6 @@
-﻿namespace Domain.Constants.Epic
+﻿namespace Domain.Constants.Epic;
+
+internal static class EpicErrorMessages
 {
-    internal static class EpicErrorMessages
-    {
-        public static readonly string InvalidEpicDependency = "Epics can only have dependencies of type Epic.";
-    }
+    public static readonly string InvalidEpicDependency = "Epics can only have dependencies of type Epic.";
 }

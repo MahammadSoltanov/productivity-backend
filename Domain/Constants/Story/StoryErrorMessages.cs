@@ -1,7 +1,6 @@
-﻿namespace Domain.Constants.Story
+﻿namespace Domain.Constants.Story;
+
+internal static class StoryErrorMessages
 {
-    internal static class StoryErrorMessages
-    {
-        public static string InvalidStoryDependency = "Stories can only have dependencies of type Story.";
-    }
+    public static string InvalidStoryDependency = "Stories can only have dependencies of type Story.";
 }
