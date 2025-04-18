@@ -20,12 +20,18 @@ public sealed class Subtask : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Subtask))
-                throw new InvalidTaskDependencyException(SubtaskErrorMessages.InvalidStoryDependency);
+            {
+                throw new InvalidTaskDependencyException(SubtaskErrorMessages.InvalidSubtaskDependency);
+            }
+
             _taskDependencies = value;
         }
     }
 
     public Guid? StoryId { get; set; }
+    public Story? Story { get; }
     public Guid? EpicId { get; set; }
+    public Epic? Epic { get; }
+    public new Guid AssigneeId { get; set; }
     public new User Assignee { get; set; }
 }

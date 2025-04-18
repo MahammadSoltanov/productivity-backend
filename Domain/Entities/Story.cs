@@ -20,11 +20,15 @@ public sealed class Story : Task
         set
         {
             if (value.Any(td => td.DependentTaskType != TaskType.Story))
+            {
                 throw new InvalidTaskDependencyException(StoryErrorMessages.InvalidStoryDependency);
+            }
+
             _taskDependencies = value;
         }
     }
 
     public ICollection<Subtask>? Subtasks { get; set; }
     public Guid EpicId { get; private set; }
+    public Epic Epic { get; }
 }
