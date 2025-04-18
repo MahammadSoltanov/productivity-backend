@@ -2,5 +2,5 @@
 
 internal static class SubtaskErrorMessages
 {
-    public static string InvalidStoryDependency = "Subtasks can only have dependencies of type Subtask.";
+    public static string InvalidSutaskDependency = "Subtasks can only have dependencies of type Subtask.";
 }
