@@ -33,5 +33,5 @@ public sealed class Subtask : Task
     public Guid? EpicId { get; set; }
     public Epic? Epic { get; }
     public new Guid AssigneeId { get; set; }
-    public new User Assignee { get; set; }
+    public new User Assignee { get; }
 }
