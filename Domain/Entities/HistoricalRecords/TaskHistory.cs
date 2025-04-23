@@ -11,12 +11,10 @@ public class TaskHistory : HistoricalEntity
         Status = status;
         Priority = priority;
         TaskType = taskType;
-        StatusChangedAt = DateTime.UtcNow;
     }
 
     public Guid TaskId { get; private set; }
     public TaskStatus Status { get; private set; }
     public TaskPriority Priority { get; private set; }
     public TaskType TaskType { get; private set; }
-    public DateTime StatusChangedAt { get; private set; }
 }
