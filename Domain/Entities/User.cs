@@ -21,7 +21,6 @@ public sealed class User : AuditableEntity
     public string? Name { get; set; }
     public string? Surname { get; set; }
     public string Email { get; private set; }
-    public UserRole Role { get; private set; }
     public string? PasswordHash { get; private set; }
     public AuthenticationProvider AuthenticationProvider { get; private set; }
     public IReadOnlyCollection<UserTeamMembership> TeamMemberships => _teamMemberships.AsReadOnly();
