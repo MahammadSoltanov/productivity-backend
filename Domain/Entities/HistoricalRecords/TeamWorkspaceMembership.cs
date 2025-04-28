@@ -11,7 +11,7 @@ public sealed class TeamWorkspaceMembership : HistoricalEntity
     }
 
     public Guid TeamId { get; private set; }
-    public Team Team { get; private set; }
+    public Team? Team { get; private set; }
     public Guid WorkspaceId { get; private set; }
-    public Workspace Workspace { get; private set; }
+    public Workspace? Workspace { get; private set; }
 }
