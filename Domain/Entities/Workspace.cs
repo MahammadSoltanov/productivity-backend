@@ -24,7 +24,7 @@ public sealed class Workspace : AuditableEntity
 
     public string Name { get; set; }
     public string? Desciption { get; set; }
-    public Guid CreatorId { get; set; }
+    public Guid CreatorId { get; private set; }
     public User? Creator { get; private set; }
     public Guid? CompanyId { get; private set; }
     public Company? Company { get; private set; }
