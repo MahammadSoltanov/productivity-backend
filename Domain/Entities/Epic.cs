@@ -24,7 +24,8 @@ public sealed class Epic : Task
         }
     }
 
-    //If this property is true then the Assignee user of the Epic should be a team leader in a team that is within the given workspace. 
+    //If this property is true then the Assignee user of the Epic should be a team leader in a team that is within the given workspace.
+    //If the value of the property is set to "true", then the team leader gains access to assign tasks to the team within the given epic.
     public bool IsAssignedToTeam { get; private set; }
     public ICollection<Story> Stories { get; set; } = new List<Story>();
     public ICollection<Subtask> Subtasks { get; set; } = new List<Subtask>();
