@@ -14,7 +14,7 @@
     <Folder Include="Events\" />    
     <Folder Include="Specifications\" />
     <Folder Include="Services\" />
-    <Folder Include="ValueObjects\" />
+    <Folder Include="ValueObjects\Epic\" />
   </ItemGroup>
 
 </Project>
