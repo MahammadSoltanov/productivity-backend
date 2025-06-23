@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{B18A3B8F-2989-4D80-AB96-48B3862FB062}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.Domain", "src\Productivity.Domain\Productivity.Domain.csproj", "{B18A3B8F-2989-4D80-AB96-48B3862FB062}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{C51E57D0-2F59-47B5-86CF-D90CF4B1F2D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.Application", "src\Productivity.Application\Productivity.Application.csproj", "{C51E57D0-2F59-47B5-86CF-D90CF4B1F2D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{915E2B5B-FCA5-4351-91A5-A26EABECD29A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.Infrastructure", "src\Productivity.Infrastructure\Productivity.Infrastructure.csproj", "{915E2B5B-FCA5-4351-91A5-A26EABECD29A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "src\Presentation\Presentation.csproj", "{D8DF2437-BD58-424C-BDC2-1A456798A2C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.Presentation", "src\Productivity.Presentation\Productivity.Presentation.csproj", "{D8DF2437-BD58-424C-BDC2-1A456798A2C2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.UnitTests", "tests\Productivity.UnitTests\Productivity.UnitTests.csproj", "{8DDF0D80-2E72-41E4-ADC8-51EBDF6D2FF4}"
 EndProject
@@ -51,5 +51,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		        SolutionGuid = {F0204621-DA38-4752-A819-71E548BBCA26}
+		SolutionGuid = {69212E9C-8BB0-493E-B97B-79957F76E9B9}
 	EndGlobalSection
 EndGlobal
