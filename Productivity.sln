@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.UnitTests", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Productivity.IntegrationTests", "tests\Productivity.IntegrationTests\Productivity.IntegrationTests.csproj", "{EA6F40FA-D462-44F6-A441-93F08B7B1732}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CDDD9134-D4A6-4129-95F7-340219DC4C2D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{147D7C52-AD99-4E21-8AFA-C52BE7865124}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B18A3B8F-2989-4D80-AB96-48B3862FB062} = {CDDD9134-D4A6-4129-95F7-340219DC4C2D}
+		{C51E57D0-2F59-47B5-86CF-D90CF4B1F2D3} = {CDDD9134-D4A6-4129-95F7-340219DC4C2D}
+		{915E2B5B-FCA5-4351-91A5-A26EABECD29A} = {CDDD9134-D4A6-4129-95F7-340219DC4C2D}
+		{D8DF2437-BD58-424C-BDC2-1A456798A2C2} = {CDDD9134-D4A6-4129-95F7-340219DC4C2D}
+		{8DDF0D80-2E72-41E4-ADC8-51EBDF6D2FF4} = {147D7C52-AD99-4E21-8AFA-C52BE7865124}
+		{EA6F40FA-D462-44F6-A441-93F08B7B1732} = {147D7C52-AD99-4E21-8AFA-C52BE7865124}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		        SolutionGuid = {F0204621-DA38-4752-A819-71E548BBCA26}
