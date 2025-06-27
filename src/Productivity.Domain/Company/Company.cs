@@ -1,19 +1,25 @@
-﻿using Productivity.Domain.Entities;
+﻿using Productivity.Domain.Company.ValueObjects;
+using Productivity.Domain.Entities;
 using Productivity.Domain.Entities.Base;
 using Productivity.Domain.Entities.HistoricalRecords;
 
 namespace Productivity.Domain.Company;
 
-public class Company : AuditableEntity
+public class Company : AuditableEntity<CompanyId>
 {
     private readonly List<UserCompanyMembership> _users = new();
     private readonly List<Workspace> _workspaces = new();
     private readonly List<Team> _teams = new();
 
-    public Company(string name, Guid ownerId)
+    private Company(CompanyId Id, string name, Guid ownerId) : base(Id)
     {
         Name = name;
         OwnerId = ownerId;
+    }
+
+    public static Company Create(string name, Guid ownerId)
+    {
+        return new(CompanyId.CreateUnique(), name, ownerId);
     }
 
     public string Name { get; set; }
