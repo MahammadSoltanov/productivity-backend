@@ -1,8 +1,6 @@
-﻿using Productivity.Domain.Entities.Base;
+﻿namespace Productivity.Domain.Entities.Relations;
 
-namespace Productivity.Domain.Entities.Relations;
-
-public class TaskAttachment : Entity
+public class TaskAttachment /*: Entity*/
 {
     public TaskAttachment(Guid attachmentId, Guid taskId)
     {

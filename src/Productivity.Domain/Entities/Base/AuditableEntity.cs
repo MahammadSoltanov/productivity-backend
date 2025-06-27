@@ -1,5 +1,5 @@
 ﻿namespace Productivity.Domain.Entities.Base;
-public class AuditableEntity : Entity
+public class AuditableEntity /*: Entity*/
 {
     public AuditableEntity()
     {

@@ -1,9 +1,8 @@
-﻿using Productivity.Domain.Entities.Base;
-using Productivity.Domain.Enumerations;
+﻿using Productivity.Domain.Enumerations;
 
 namespace Productivity.Domain.Entities.Relations;
 
-public sealed class TaskDependency : Entity
+public sealed class TaskDependency /*: Entity*/
 {
     public TaskDependency(Guid taskId, Guid dependentTaskId, TaskType dependentTaskType)
     {
