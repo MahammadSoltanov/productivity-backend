@@ -1,10 +1,9 @@
-﻿namespace Productivity.Domain.Entities.Base;
-public class AuditableEntity /*: Entity*/
+﻿using Productivity.Domain.Common.Models;
+
+namespace Productivity.Domain.Entities.Base;
+public class AuditableEntity<TId> : Entity<TId> where TId : notnull
 {
-    public AuditableEntity()
-    {
-        CreatedAt = DateTime.UtcNow;
-    }
+    public AuditableEntity(TId Id) : base(Id) => CreatedAt = DateTime.UtcNow;
 
     public void MarkAsModified(Guid modifierId)
     {

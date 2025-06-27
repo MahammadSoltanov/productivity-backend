@@ -1,4 +1,4 @@
-﻿namespace Productivity.Domain.Models;
+﻿namespace Productivity.Domain.Common.Models;
 public abstract class ValueObject
 {
     protected static bool EqualOperator(ValueObject left, ValueObject right)
