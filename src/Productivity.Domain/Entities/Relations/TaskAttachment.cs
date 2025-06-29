@@ -1,15 +1,16 @@
-﻿namespace Productivity.Domain.Entities.Relations;
+﻿using Productivity.Domain.Common.ValueObjects;
 
-public class TaskAttachment /*: Entity*/
+namespace Productivity.Domain.Entities.Relations;
+
+public class TaskAttachment<TTaskId>
 {
-    public TaskAttachment(Guid attachmentId, Guid taskId)
+    public TaskAttachment(FileId attachmentId, TTaskId taskId)
     {
         AttachmentId = attachmentId;
         TaskId = taskId;
     }
 
     public FileStorage Attachment { get; private set; }
-    public Guid AttachmentId { get; private set; }
-    public Task Task { get; private set; }
-    public Guid TaskId { get; private set; }
+    public FileId AttachmentId { get; private set; }
+    public TTaskId TaskId { get; private set; }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Productivity.Domain.Entities;
 
-public class FileStorage /*: Entity*/
+public class FileStorage
 {
     public string FileName { get; set; }
     public string FileUrl { get; set; }

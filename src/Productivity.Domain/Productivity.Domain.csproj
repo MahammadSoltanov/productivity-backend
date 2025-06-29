@@ -7,19 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Constants\Team\" />
-    <Folder Include="Events\" />
-    <Folder Include="Aggregates\" />
-    <Folder Include="Epic\" />
-    <Folder Include="Team\" />
-    <Folder Include="User\" />
-    <Folder Include="Subtask\" />
-    <Folder Include="Story\" />
-    <Folder Include="Workspace\" />    
-    <Folder Include="Specifications\" />
-    <Folder Include="Services\" />
-    <Folder Include="ValueObjects\Epic\" />
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Interfaces\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Interfaces\" />
+    <Folder Include="Common\Events\" />
+    <Folder Include="Common\Services\" />
+    <Folder Include="Constants\Epic\" />
+    <Folder Include="Constants\Story\" />
+    <Folder Include="Constants\Subtask\" />
+    <Folder Include="FileStorage\" />
+    <Folder Include="NewFolder\" />
+    <Folder Include="UserAggregate\Entities\" />
   </ItemGroup>
 
 </Project>
