@@ -1,18 +1,41 @@
-﻿using Productivity.Domain.Entities.Base;
-using Productivity.Domain.TeamAggregate;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
 
 namespace Productivity.Domain.WorkspaceAggregate.Entities;
 
-public sealed class TeamWorkspaceMembership : HistoricalEntity
+public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
 {
-    public TeamWorkspaceMembership(Guid teamId, Guid workspaceId)
+    public TeamId TeamId { get; }
+    public WorkspaceId WorkspaceId { get; }
+    public DateRange ValidityPeriod { get; }
+
+    private TeamWorkspaceMembership(
+        TeamWorkspaceMembershipId id,
+        TeamId teamId,
+        WorkspaceId workspaceId,
+        DateRange validityPeriod
+    ) : base(id)
     {
         TeamId = teamId;
         WorkspaceId = workspaceId;
+        ValidityPeriod = validityPeriod;
     }
 
-    public Guid TeamId { get; private set; }
-    public Team? Team { get; private set; }
-    public Guid WorkspaceId { get; private set; }
-    public Workspace? Workspace { get; private set; }
+    public static TeamWorkspaceMembership Create(
+        TeamId teamId,
+        WorkspaceId workspaceId,
+        DateTime validFrom,
+        DateTime? validTo = null
+    )
+    {
+        var period = new DateRange(validFrom, validTo);
+        return new TeamWorkspaceMembership(
+            TeamWorkspaceMembershipId.CreateUnique(),
+            teamId,
+            workspaceId,
+            period
+        );
+    }
+
+    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
 }

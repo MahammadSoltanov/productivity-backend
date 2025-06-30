@@ -1,11 +1,11 @@
-﻿using Productivity.Domain.TeamAggregate.Entities;
-using Productivity.Domain.WorkspaceAggregate.Entities;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.TeamAggregate.Entities;
 
 namespace Productivity.Domain.TeamAggregate;
 
-public sealed class Team : AuditableEntity
+public sealed class Team : Entity<TeamId>
 {
-    public Team(string title, Guid companyId)
+    public Team(TeamId id, string title, Guid companyId) : base(id)
     {
         Title = title;
         CompanyId = companyId;
@@ -15,5 +15,4 @@ public sealed class Team : AuditableEntity
     public string? Description { get; set; }
     public Guid CompanyId { get; private set; }
     public ICollection<UserTeamMembership> Members { get; set; } = new List<UserTeamMembership>();
-    public ICollection<TeamWorkspaceMembership> WorkspaceMemberships { get; set; } = new List<TeamWorkspaceMembership>();
 }

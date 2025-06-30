@@ -1,21 +1,43 @@
-﻿using Productivity.Domain.Entities.Base;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.Enumerations;
-using Productivity.Domain.UserAggregate;
 
 namespace Productivity.Domain.TeamAggregate.Entities;
 
-public sealed class UserTeamMembership : HistoricalEntity
+public sealed class UserTeamMembership : Entity<UserTeamMembershipId>
 {
-    public UserTeamMembership(Guid teamId, Guid userId, TeamRole role)
+    public UserId UserId { get; }
+    public TeamId TeamId { get; }
+    public TeamRole Role { get; }
+    public DateRange ValidityPeriod { get; }
+
+    private UserTeamMembership(UserTeamMembershipId id,
+                               UserId userId,
+                               TeamId teamId,
+                               TeamRole role,
+                               DateRange validityPeriod) : base(id)
     {
-        TeamId = teamId;
         UserId = userId;
+        TeamId = teamId;
         Role = role;
+        ValidityPeriod = validityPeriod;
     }
 
-    public Guid UserId { get; private set; }
-    public User? User { get; private set; }
-    public Guid TeamId { get; private set; }
-    public Team? Team { get; private set; }
-    public TeamRole Role { get; private set; }
+    public static UserTeamMembership Create(UserId userId,
+                                            TeamId teamId,
+                                            TeamRole role,
+                                            DateTime validFrom,
+                                            DateTime? validTo = null)
+    {
+        var period = new DateRange(validFrom, validTo);
+
+        return new UserTeamMembership(UserTeamMembershipId.CreateUnique(),
+                                      userId,
+                                      teamId,
+                                      role,
+                                      period);
+    }
+
+    public bool IsActiveAt(DateTime at)
+        => ValidityPeriod.IsWithinRange(at);
 }

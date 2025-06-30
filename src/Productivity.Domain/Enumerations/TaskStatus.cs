@@ -4,6 +4,7 @@ public enum TaskStatus
 {
     Pending,
     InProgress,
+    Paused,
     Completed,
     Archived
 }

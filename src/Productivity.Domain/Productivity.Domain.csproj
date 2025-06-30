@@ -19,8 +19,10 @@
     <Folder Include="Constants\Epic\" />
     <Folder Include="Constants\Story\" />
     <Folder Include="Constants\Subtask\" />
+    <Folder Include="Entities\Base\" />
+    <Folder Include="Entities\HistoricalRecords\" />
+    <Folder Include="Entities\Relations\" />
     <Folder Include="FileStorage\" />
-    <Folder Include="NewFolder\" />
     <Folder Include="UserAggregate\Entities\" />
   </ItemGroup>
 

@@ -1,13 +1,10 @@
-﻿using Productivity.Domain.CompanyAggregate.Entities;
-using Productivity.Domain.CompanyAggregate.ValueObjects;
-using Productivity.Domain.Entities.Base;
-using Productivity.Domain.TeamAggregate.ValueObjects;
-using Productivity.Domain.UserAggregate.ValueObjects;
-using Productivity.Domain.WorkspaceAggregate.ValueObjects;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
+using Productivity.Domain.CompanyAggregate.Entities;
 
 namespace Productivity.Domain.CompanyAggregate;
 
-public sealed class Company : AuditableEntity<CompanyId>
+public sealed class Company : AggregateRoot<CompanyId>
 {
     private readonly List<UserCompanyMembership> _users = new();
     private readonly List<WorkspaceId> _workspaces = new();
@@ -19,6 +16,7 @@ public sealed class Company : AuditableEntity<CompanyId>
     public ICollection<TeamId> Teams => _teams.AsReadOnly();
     public IReadOnlyCollection<UserCompanyMembership> Users => _users.AsReadOnly();
     public UserId OwnerId { get; }
+    public AuditMetadata AuditMetadata { get; }
 
     private Company(CompanyId id, string name, UserId ownerId) : base(id)
     {

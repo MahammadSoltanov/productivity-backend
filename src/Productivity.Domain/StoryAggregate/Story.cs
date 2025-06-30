@@ -1,23 +1,46 @@
-﻿using Productivity.Domain.Entities.Abstract;
-using Productivity.Domain.EpicAggregate;
-using Productivity.Domain.SubtaskAggregate;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
+using Productivity.Domain.Enumerations;
+using Productivity.Domain.StoryAggregate.Entities;
 
 namespace Productivity.Domain.StoryAggregate;
 
-public sealed class Story : TaskAbstract<StoryId>
+public sealed class Story : AggregateRoot<StoryId>
 {
-    public ICollection<Subtask>? Subtasks { get; set; }
-    public Guid EpicId { get; private set; }
-    public Epic Epic { get; }
+    private List<StoryDependency> _dependencies = new();
+    private List<SubtaskId> _subtasks = new();
+    private List<FileId> _attachments = new();
+    private List<string> _tags = new();
 
-    private Story(StoryId id, string title, WorkspaceId workspaceId, UserId creatorId) : base(id, title, workspaceId, creatorId)
+    public EpicId EpicId { get; }
+    public UserId? AssigneeId { get; }
+
+    public string Title { get; set; }
+    public string? Description { get; set; }
+
+    public TaskStatusProgression Status { get; private set; }
+    public TaskPriority Priority { get; private set; }
+
+    public DateRange? EstimatedPeriod { get; private set; }
+    public DateRange? RealizedPeriod { get; private set; }
+
+    public IReadOnlyCollection<SubtaskId> Subtasks => _subtasks.AsReadOnly();
+    public IReadOnlyCollection<StoryDependency> Dependencies => _dependencies.AsReadOnly();
+
+    public IReadOnlyCollection<FileId> Attachments => _attachments.AsReadOnly();
+    public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
+
+    public AuditMetadata AuditMetadata { get; }
+
+    private Story(StoryId id, string title, EpicId epicId, UserId creatorId) : base(id)
     {
-
+        Title = title;
+        EpicId = epicId;
+        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
     }
 
-    public Story Create(string title, WorkspaceId workspaceId, UserId creatorId)
+    public Story Create(string title, EpicId epicId, UserId creatorId)
     {
-        return new(StoryId.CreateUnique(), title, workspaceId, creatorId);
+        return new(StoryId.CreateUnique(), title, epicId, creatorId);
     }
-
 }

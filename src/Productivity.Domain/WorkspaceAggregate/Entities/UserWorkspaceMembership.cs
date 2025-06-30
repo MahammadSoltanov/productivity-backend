@@ -1,21 +1,46 @@
-﻿using Productivity.Domain.Entities.Base;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.Enumerations;
-using Productivity.Domain.UserAggregate;
 
 namespace Productivity.Domain.WorkspaceAggregate.Entities;
-
-public sealed class UserWorkspaceMembership : HistoricalEntity
+public sealed class UserWorkspaceMembership : Entity<UserWorkspaceMembershipId>
 {
-    public UserWorkspaceMembership(Guid userId, Guid workspaceId, WorkspaceRole role)
+    public UserId UserId { get; }
+    public WorkspaceId WorkspaceId { get; }
+    public WorkspaceRole Role { get; }
+    public DateRange ValidityPeriod { get; }
+
+    private UserWorkspaceMembership(
+        UserWorkspaceMembershipId id,
+        UserId userId,
+        WorkspaceId workspaceId,
+        WorkspaceRole role,
+        DateRange validityPeriod
+    ) : base(id)
     {
         UserId = userId;
         WorkspaceId = workspaceId;
         Role = role;
+        ValidityPeriod = validityPeriod;
     }
 
-    public Guid UserId { get; private set; }
-    public User? User { get; private set; }
-    public Guid WorkspaceId { get; private set; }
-    public Workspace? Workspace { get; private set; }
-    public WorkspaceRole Role { get; private set; }
+    public static UserWorkspaceMembership Create(
+        UserId userId,
+        WorkspaceId workspaceId,
+        WorkspaceRole role,
+        DateTime validFrom,
+        DateTime? validTo = null
+    )
+    {
+        var period = new DateRange(validFrom, validTo);
+        return new UserWorkspaceMembership(
+            UserWorkspaceMembershipId.CreateUnique(),
+            userId,
+            workspaceId,
+            role,
+            period
+        );
+    }
+
+    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
 }

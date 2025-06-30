@@ -1,40 +1,51 @@
-﻿using Productivity.Domain.Entities.Relations;
+﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.Enumerations;
-using Productivity.Domain.EpicAggregate;
-using Productivity.Domain.Exceptions.Task;
-using Productivity.Domain.StoryAggregate;
-using Productivity.Domain.SubtaskAggregate.Constants;
-using Productivity.Domain.UserAggregate;
+using Productivity.Domain.EpicAggregate.Entities;
 
 namespace Productivity.Domain.SubtaskAggregate;
 
-public sealed class Subtask : TaskBase
+public sealed class Subtask : AggregateRoot<SubtaskId>
 {
-    private ICollection<TaskDependency> _taskDependencies = new List<TaskDependency>();
+    private List<SubtaskDependency> _dependencies = new();
+    private List<FileId> _attachments = new();
+    private List<string> _tags = new();
 
-    public Subtask(User assignee, string title, Guid workspaceId, Guid creatorId, Story story) : base(title, workspaceId, creatorId)
+    public StoryId? StoryId { get; set; }
+    public EpicId? EpicId { get; set; }
+    public UserId? AssigneeId { get; }
+
+    public string Title { get; set; }
+    public string? Description { get; set; }
+
+    public TaskStatusProgression Status { get; private set; }
+    public TaskPriority Priority { get; private set; }
+
+    public DateRange? EstimatedPeriod { get; private set; }
+    public DateRange? RealizedPeriod { get; private set; }
+
+    public IReadOnlyCollection<SubtaskDependency> Dependencies => _dependencies.AsReadOnly();
+
+    public IReadOnlyCollection<FileId> Attachments => _attachments.AsReadOnly();
+    public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
+
+    public AuditMetadata AuditMetadata { get; }
+
+
+    public Subtask(SubtaskId id, string title, UserId creatorId, StoryId? storyId = null, EpicId? epicId = null) : base(id)
     {
-        Assignee = assignee;
+        Title = title;
+        StoryId = storyId;
+        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
     }
 
-    public new ICollection<TaskDependency> TaskDependencies
+    public Subtask CreateForStory(string title, StoryId storyId, UserId creatorId)
     {
-        get => _taskDependencies;
-        set
-        {
-            if (value.Any(td => td.DependentTaskType != TaskType.Subtask))
-            {
-                throw new InvalidTaskDependencyException(SubtaskErrorMessages.InvalidSubtaskDependency);
-            }
-
-            _taskDependencies = value;
-        }
+        return new(SubtaskId.CreateUnique(), title, creatorId, storyId, null);
     }
 
-    public Guid? StoryId { get; set; }
-    public Story? Story { get; }
-    public Guid? EpicId { get; set; }
-    public Epic? Epic { get; }
-    public new Guid AssigneeId { get; set; }
-    public new User Assignee { get; }
+    public Subtask CreateForEpic(string title, EpicId epicId, UserId creatorId)
+    {
+        return new(SubtaskId.CreateUnique(), title, creatorId, null, epicId);
+    }
 }
