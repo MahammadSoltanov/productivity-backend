@@ -18,14 +18,15 @@ public sealed class Company : AggregateRoot<CompanyId>
     public UserId OwnerId { get; }
     public AuditMetadata AuditMetadata { get; }
 
-    private Company(CompanyId id, string name, UserId ownerId) : base(id)
+    private Company(CompanyId id, string name, UserId creatorId) : base(id)
     {
         Name = name;
-        OwnerId = ownerId;
+        OwnerId = creatorId;
+        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
     }
 
-    public static Company Create(string name, UserId ownerId)
+    public static Company Create(string name, UserId creatorId)
     {
-        return new(CompanyId.CreateUnique(), name, ownerId);
+        return new(CompanyId.CreateUnique(), name, creatorId);
     }
 }
