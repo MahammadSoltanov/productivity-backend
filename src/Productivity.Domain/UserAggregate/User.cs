@@ -3,7 +3,7 @@ using Productivity.Domain.Enumerations;
 
 namespace Productivity.Domain.UserAggregate;
 
-public sealed class User : Entity<UserId>
+public sealed class User : AggregateRoot<UserId>
 {
     private User(UserId id, string email) : base(id)
     {
