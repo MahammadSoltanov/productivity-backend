@@ -1,4 +1,5 @@
-﻿using Productivity.Domain.Common.Models;
+﻿using Productivity.Domain.Common.Exceptions;
+using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.Enumerations;
 
@@ -7,9 +8,9 @@ namespace Productivity.Domain.Common.Abstract;
 public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId>
 {
     public TTaskId TaskId { get; }
-    public DateRange ValidityPeriod { get; }
     public TaskStatus Status { get; }
     public TaskPriority Priority { get; }
+    public DateRange ValidityPeriod { get; private set; }
 
     public TaskStateHistoryEntry(TId id, TTaskId taskId, TaskStatus status, TaskPriority priority, DateRange validityPeriod) : base(id)
     {
@@ -17,5 +18,15 @@ public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId>
         Status = status;
         Priority = priority;
         ValidityPeriod = validityPeriod;
+    }
+
+    public void ClosePeriod(DateTime end)
+    {
+        if (ValidityPeriod.To.HasValue)
+        {
+            throw new DomainException("History entry already closed.");
+        }
+
+        ValidityPeriod = new DateRange(ValidityPeriod.From, end);
     }
 }
