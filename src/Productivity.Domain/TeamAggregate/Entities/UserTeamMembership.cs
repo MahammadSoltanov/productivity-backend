@@ -26,18 +26,14 @@ public sealed class UserTeamMembership : Entity<UserTeamMembershipId>
     public static UserTeamMembership Create(UserId userId,
                                             TeamId teamId,
                                             TeamRole role,
-                                            DateTime validFrom,
-                                            DateTime? validTo = null)
+                                            DateRange validityPeriod)
     {
-        var period = new DateRange(validFrom, validTo);
-
         return new UserTeamMembership(UserTeamMembershipId.CreateUnique(),
                                       userId,
                                       teamId,
                                       role,
-                                      period);
+                                      validityPeriod);
     }
 
-    public bool IsActiveAt(DateTime at)
-        => ValidityPeriod.IsWithinRange(at);
+    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
 }
