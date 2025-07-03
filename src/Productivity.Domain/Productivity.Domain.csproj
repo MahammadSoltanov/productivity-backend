@@ -17,9 +17,6 @@
     <Folder Include="Common\Events\" />
     <Folder Include="Common\Services\" />
     <Folder Include="CompanyAggregate\Entities\" />
-    <Folder Include="Entities\Base\" />
-    <Folder Include="Entities\HistoricalRecords\" />
-    <Folder Include="Entities\Relations\" />
     <Folder Include="UserAggregate\Entities\" />
   </ItemGroup>
 
