@@ -23,7 +23,6 @@
     <Folder Include="Entities\Base\" />
     <Folder Include="Entities\HistoricalRecords\" />
     <Folder Include="Entities\Relations\" />
-    <Folder Include="FileStorage\" />
     <Folder Include="UserAggregate\Entities\" />
   </ItemGroup>
 
