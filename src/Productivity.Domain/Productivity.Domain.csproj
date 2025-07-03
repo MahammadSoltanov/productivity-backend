@@ -16,6 +16,7 @@
     <Folder Include="Common\Interfaces\" />
     <Folder Include="Common\Events\" />
     <Folder Include="Common\Services\" />
+    <Folder Include="CompanyAggregate\Entities\" />
     <Folder Include="Constants\Epic\" />
     <Folder Include="Constants\Story\" />
     <Folder Include="Constants\Subtask\" />
