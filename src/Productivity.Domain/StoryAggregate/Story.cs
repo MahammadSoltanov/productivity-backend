@@ -1,6 +1,6 @@
-﻿using Productivity.Domain.Common.Models;
+﻿using Productivity.Domain.Common.Enumerations;
+using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
-using Productivity.Domain.Enumerations;
 using Productivity.Domain.StoryAggregate.Entities;
 
 namespace Productivity.Domain.StoryAggregate;

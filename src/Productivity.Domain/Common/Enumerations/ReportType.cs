@@ -1,4 +1,4 @@
-﻿namespace Productivity.Domain.Enumerations;
+﻿namespace Productivity.Domain.Common.Enumerations;
 
 public enum ReportType
 {

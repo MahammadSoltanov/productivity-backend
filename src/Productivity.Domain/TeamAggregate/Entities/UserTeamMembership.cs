@@ -1,6 +1,6 @@
 ﻿using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
-using Productivity.Domain.Enumerations;
+using Productivity.Domain.TeamAggregate.Enumerations;
 
 namespace Productivity.Domain.TeamAggregate.Entities;
 

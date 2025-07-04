@@ -1,5 +1,5 @@
-﻿using Productivity.Domain.Common.Models;
-using Productivity.Domain.Enumerations;
+﻿using Productivity.Domain.Common.Enumerations;
+using Productivity.Domain.Common.Models;
 
 namespace Productivity.Domain.UserAggregate;
 

@@ -1,6 +1,6 @@
 ﻿using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
-using Productivity.Domain.Enumerations;
+using Productivity.Domain.WorkspaceAggregate.Enumerations;
 
 namespace Productivity.Domain.WorkspaceAggregate.Entities;
 public sealed class UserWorkspaceMembership : Entity<UserWorkspaceMembershipId>

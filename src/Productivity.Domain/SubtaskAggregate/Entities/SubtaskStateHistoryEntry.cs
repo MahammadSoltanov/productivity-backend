@@ -1,6 +1,6 @@
 ﻿using Productivity.Domain.Common.Abstract;
+using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.ValueObjects;
-using Productivity.Domain.Enumerations;
 
 namespace Productivity.Domain.SubtaskAggregate.Entities;
 public class SubtaskStateHistoryEntry : TaskStateHistoryEntry<SubtaskStateHistoryEntryId, SubtaskId>

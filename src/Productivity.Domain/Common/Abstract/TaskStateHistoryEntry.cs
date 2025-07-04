@@ -1,7 +1,7 @@
-﻿using Productivity.Domain.Common.Exceptions;
+﻿using Productivity.Domain.Common.Enumerations;
+using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
-using Productivity.Domain.Enumerations;
 
 namespace Productivity.Domain.Common.Abstract;
 
