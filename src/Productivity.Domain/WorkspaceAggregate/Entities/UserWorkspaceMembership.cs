@@ -1,4 +1,5 @@
-﻿using Productivity.Domain.Common.Models;
+﻿using Productivity.Domain.Common.Enumerations;
+using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.WorkspaceAggregate.Enumerations;
 
@@ -6,27 +7,21 @@ namespace Productivity.Domain.WorkspaceAggregate.Entities;
 public sealed class UserWorkspaceMembership : Entity<UserWorkspaceMembershipId>
 {
     public UserId UserId { get; }
-    public WorkspaceId WorkspaceId { get; }
     public WorkspaceRole Role { get; }
     public DateRange ValidityPeriod { get; }
+    public MembershipStatus Status { get; private set; }
 
     private UserWorkspaceMembership(
         UserWorkspaceMembershipId id,
-        UserId userId,
-        WorkspaceId workspaceId,
         WorkspaceRole role,
         DateRange validityPeriod
     ) : base(id)
     {
-        UserId = userId;
-        WorkspaceId = workspaceId;
         Role = role;
         ValidityPeriod = validityPeriod;
     }
 
     public static UserWorkspaceMembership Create(
-        UserId userId,
-        WorkspaceId workspaceId,
         WorkspaceRole role,
         DateTime validFrom,
         DateTime? validTo = null
@@ -35,8 +30,6 @@ public sealed class UserWorkspaceMembership : Entity<UserWorkspaceMembershipId>
         var period = new DateRange(validFrom, validTo);
         return new UserWorkspaceMembership(
             UserWorkspaceMembershipId.CreateUnique(),
-            userId,
-            workspaceId,
             role,
             period
         );
