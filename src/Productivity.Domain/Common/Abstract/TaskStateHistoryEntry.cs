@@ -5,14 +5,14 @@ using Productivity.Domain.Common.ValueObjects;
 
 namespace Productivity.Domain.Common.Abstract;
 
-public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId>
+public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId> where TId : notnull
 {
     public TTaskId TaskId { get; }
     public TaskStatus Status { get; }
     public TaskPriority Priority { get; }
     public DateRange ValidityPeriod { get; private set; }
 
-    public TaskStateHistoryEntry(TId id, TTaskId taskId, TaskStatus status, TaskPriority priority, DateRange validityPeriod) : base(id)
+    internal TaskStateHistoryEntry(TId id, TTaskId taskId, TaskStatus status, TaskPriority priority, DateRange validityPeriod) : base(id)
     {
         TaskId = taskId;
         Status = status;
