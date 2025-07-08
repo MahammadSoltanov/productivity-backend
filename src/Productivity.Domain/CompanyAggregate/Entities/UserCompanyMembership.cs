@@ -24,6 +24,8 @@ public class UserCompanyMembership : Entity<UserCompanyMembershipId>
         return new(UserCompanyMembershipId.CreateUnique(), userId, role);
     }
 
+    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
+
     public void End()
     {
         if (Status != MembershipStatus.Active)

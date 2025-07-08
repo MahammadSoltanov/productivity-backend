@@ -1,4 +1,5 @@
 ﻿using Productivity.Domain.Common.Enumerations;
+using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
 using Productivity.Domain.Common.ValueObjects;
 
@@ -7,7 +8,7 @@ namespace Productivity.Domain.WorkspaceAggregate.Entities;
 public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
 {
     public TeamId TeamId { get; }
-    public DateRange ValidityPeriod { get; }
+    public DateRange ValidityPeriod { get; private set; }
     public MembershipStatus Status { get; private set; }
 
     private TeamWorkspaceMembership(
@@ -35,4 +36,16 @@ public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
     }
 
     public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
+
+    public void End()
+    {
+        if (Status != MembershipStatus.Active)
+        {
+            throw new DomainException("Only active memberships can be ended.");
+        }
+
+        Status = MembershipStatus.Removed;
+
+        ValidityPeriod = new DateRange(ValidityPeriod.From, DateTime.UtcNow);
+    }
 }
