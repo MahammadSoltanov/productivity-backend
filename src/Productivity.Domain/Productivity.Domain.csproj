@@ -17,7 +17,6 @@
     <Folder Include="Common\Interfaces\" />
     <Folder Include="Common\Events\" />
     <Folder Include="Common\Services\" />
-    <Folder Include="UserAggregate\Entities\" />
   </ItemGroup>
 
 </Project>

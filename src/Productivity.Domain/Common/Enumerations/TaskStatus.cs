@@ -2,9 +2,10 @@
 
 public enum TaskStatus
 {
-    Pending,
+    Backlog,
+    Planned,
     InProgress,
-    Paused,
+    Awaiting,
     Completed,
     Archived
 }

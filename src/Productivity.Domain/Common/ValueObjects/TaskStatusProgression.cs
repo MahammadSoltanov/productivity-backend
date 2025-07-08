@@ -6,7 +6,7 @@ public sealed class TaskStatusProgression : ValueObject
 {
     static readonly TaskStatus[] _order = new[]
     {
-        TaskStatus.Pending,
+        TaskStatus.Backlog,
         TaskStatus.InProgress,
         TaskStatus.Paused,
         TaskStatus.Completed
@@ -16,11 +16,11 @@ public sealed class TaskStatusProgression : ValueObject
 
     private TaskStatusProgression(TaskStatus status) => Current = status;
 
-    public static TaskStatusProgression Initial() => new(TaskStatus.Pending);
+    public static TaskStatusProgression Initial() => new(TaskStatus.Backlog);
 
     public TaskStatusProgression Start()
     {
-        if (Current != TaskStatus.Pending)
+        if (Current != TaskStatus.Backlog)
         {
             throw new DomainException($"Cannot start from {Current}");
         }
