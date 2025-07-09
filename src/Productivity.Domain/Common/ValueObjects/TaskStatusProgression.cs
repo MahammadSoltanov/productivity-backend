@@ -79,4 +79,3 @@ public sealed class TaskStatusProgression : ValueObject
         yield return Current;
     }
 }
-

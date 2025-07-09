@@ -23,4 +23,3 @@ public sealed class AccountSettings : ValueObject
         foreach (var t in MutedNotificationTypes) yield return t;
     }
 }
-

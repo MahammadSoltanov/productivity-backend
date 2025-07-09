@@ -20,4 +20,3 @@ public sealed class StoryStateHistoryEntryId : ValueObject
         yield return Value;
     }
 }
-

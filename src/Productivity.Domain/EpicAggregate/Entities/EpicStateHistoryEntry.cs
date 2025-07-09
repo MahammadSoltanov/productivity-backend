@@ -13,4 +13,3 @@ public class EpicStateHistoryEntry : TaskStateHistoryEntry<EpicStateHistoryEntry
     {
     }
 }
-

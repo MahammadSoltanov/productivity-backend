@@ -20,5 +20,3 @@ public sealed class SubtaskStateHistoryEntryId : ValueObject
         yield return Value;
     }
 }
-
-
