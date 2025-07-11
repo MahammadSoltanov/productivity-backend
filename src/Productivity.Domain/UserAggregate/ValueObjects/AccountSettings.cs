@@ -1,7 +1,7 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Models;
 
-namespace Productivity.Domain.UserAggregate.Entities;
+namespace Productivity.Domain.UserAggregate.ValueObjects;
 public sealed class AccountSettings : ValueObject
 {
     public ThemePreference Theme { get; }

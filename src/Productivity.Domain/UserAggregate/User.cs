@@ -1,6 +1,5 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Models;
-using Productivity.Domain.UserAggregate.Entities;
 
 namespace Productivity.Domain.UserAggregate;
 
