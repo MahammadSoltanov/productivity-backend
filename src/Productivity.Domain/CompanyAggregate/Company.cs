@@ -9,6 +9,7 @@ public sealed class Company : AggregateRoot<CompanyId>
     private readonly List<WorkspaceId> _workspaces = new();
     private readonly List<TeamId> _teams = new();
 
+
     public string Name { get; set; }
     public string? Description { get; set; }
     public ICollection<WorkspaceId> Workspaces => _workspaces.AsReadOnly();
@@ -16,6 +17,7 @@ public sealed class Company : AggregateRoot<CompanyId>
     public IReadOnlyCollection<UserId> Users => _users.AsReadOnly();
     public UserId OwnerId { get; }
     public AuditMetadata AuditMetadata { get; }
+    public GlobalCompanySettings GlobalSettings { get; private set; }
 
     private Company(CompanyId id, string name, UserId creatorId) : base(id)
     {
@@ -27,5 +29,10 @@ public sealed class Company : AggregateRoot<CompanyId>
     public static Company Create(string name, UserId creatorId)
     {
         return new(CompanyId.CreateUnique(), name, creatorId);
+    }
+
+    public void UpdateGlobalSettings(GlobalCompanySettings settings)
+    {
+        GlobalSettings = settings;
     }
 }
