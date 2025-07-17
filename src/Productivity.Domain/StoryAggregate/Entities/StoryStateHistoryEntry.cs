@@ -7,9 +7,11 @@ public class StoryStateHistoryEntry : TaskStateHistoryEntry<StoryStateHistoryEnt
 {
     public StoryStateHistoryEntry(StoryStateHistoryEntryId id,
                                   StoryId taskId,
+                                  UserId initiatorId,
+                                  UserId assigneeId,
                                   TaskStatus status,
                                   TaskPriority priority,
-                                  DateRange validityPeriod) : base(id, taskId, status, priority, validityPeriod)
+                                  DateRange validityPeriod) : base(id, taskId, initiatorId, assigneeId, status, priority, validityPeriod)
     {
     }
 }

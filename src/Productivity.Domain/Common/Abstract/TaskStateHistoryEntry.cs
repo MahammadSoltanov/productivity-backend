@@ -11,10 +11,15 @@ public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId> where TI
     public TaskStatus Status { get; }
     public TaskPriority Priority { get; }
     public DateRange ValidityPeriod { get; private set; }
+    public UserId InitiatorId { get; }
+    public UserId AssigneeId { get; }
 
-    internal TaskStateHistoryEntry(TId id, TTaskId taskId, TaskStatus status, TaskPriority priority, DateRange validityPeriod) : base(id)
+
+    internal TaskStateHistoryEntry(TId id, TTaskId taskId, UserId initiatorId, UserId assigneeId, TaskStatus status, TaskPriority priority, DateRange validityPeriod) : base(id)
     {
         TaskId = taskId;
+        InitiatorId = initiatorId;
+        AssigneeId = assigneeId;
         Status = status;
         Priority = priority;
         ValidityPeriod = validityPeriod;
