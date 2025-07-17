@@ -12,6 +12,7 @@ public sealed class Epic : AggregateRoot<EpicId>
     private List<SubtaskId> _subtasks = new();
     private List<FileId> _attachments = new();
     private List<string> _tags = new();
+    private List<EpicComment> _comments = new();
 
     public WorkspaceId WorkspaceId { get; }
     public UserId? AssigneeId { get; }
@@ -31,6 +32,7 @@ public sealed class Epic : AggregateRoot<EpicId>
 
     public IReadOnlyCollection<FileId> Attachments => _attachments.AsReadOnly();
     public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
+    public IReadOnlyCollection<EpicComment> Comments => _comments.AsReadOnly();
 
     public AuditMetadata AuditMetadata { get; }
 
