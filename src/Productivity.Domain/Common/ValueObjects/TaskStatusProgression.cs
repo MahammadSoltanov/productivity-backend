@@ -4,12 +4,14 @@ using Productivity.Domain.Common.Models;
 namespace Productivity.Domain.Common.ValueObjects;
 public sealed class TaskStatusProgression : ValueObject
 {
-    static readonly TaskStatus[] _order = new[]
+    private static readonly TaskStatus[] _order = new[]
     {
         TaskStatus.Backlog,
+        TaskStatus.Planned,
         TaskStatus.InProgress,
-        TaskStatus.Paused,
-        TaskStatus.Completed
+        TaskStatus.Awaiting,
+        TaskStatus.Completed,
+        TaskStatus.Archived
     };
 
     public TaskStatus Current { get; }
@@ -18,31 +20,40 @@ public sealed class TaskStatusProgression : ValueObject
 
     public static TaskStatusProgression Initial() => new(TaskStatus.Backlog);
 
-    public TaskStatusProgression Start()
+    public TaskStatusProgression Plan()
     {
         if (Current != TaskStatus.Backlog)
         {
-            throw new DomainException($"Cannot start from {Current}");
+            throw new DomainException($"Cannot move to Planned from {Current}.");
+        }
+        return new(TaskStatus.Planned);
+    }
+
+    public TaskStatusProgression Start()
+    {
+        if (Current != TaskStatus.Planned)
+        {
+            throw new DomainException($"Cannot start from {Current}.");
         }
 
         return new(TaskStatus.InProgress);
     }
 
-    public TaskStatusProgression Pause()
+    public TaskStatusProgression Await()
     {
         if (Current != TaskStatus.InProgress)
         {
-            throw new DomainException($"Cannot pause from {Current}");
+            throw new DomainException($"Cannot move to Awaiting from {Current}.");
         }
 
-        return new(TaskStatus.Paused);
+        return new(TaskStatus.Awaiting);
     }
 
     public TaskStatusProgression Resume()
     {
-        if (Current != TaskStatus.Paused)
+        if (Current != TaskStatus.Awaiting)
         {
-            throw new DomainException($"Cannot resume from {Current}");
+            throw new DomainException($"Cannot resume from {Current}.");
         }
 
         return new(TaskStatus.InProgress);
@@ -50,16 +61,30 @@ public sealed class TaskStatusProgression : ValueObject
 
     public TaskStatusProgression Complete()
     {
-        if (Current == TaskStatus.Completed)
+        if (Current == TaskStatus.Completed || Current == TaskStatus.Archived)
+        {
             return this;
+        }
+
         var currentIndex = Array.IndexOf(_order, Current);
         var completedIndex = Array.IndexOf(_order, TaskStatus.Completed);
-        if (currentIndex > completedIndex)
+
+        if (currentIndex < 0 || currentIndex > completedIndex)
         {
-            throw new DomainException($"Invalid transition from {Current} to Completed");
+            throw new DomainException($"Invalid transition from {Current} to Completed.");
         }
 
         return new(TaskStatus.Completed);
+    }
+
+    public TaskStatusProgression Archive()
+    {
+        if (Current != TaskStatus.Completed)
+        {
+            throw new DomainException($"Can only archive from Completed, not {Current}.");
+        }
+
+        return new(TaskStatus.Archived);
     }
 
     public TaskStatusProgression Next()
@@ -68,7 +93,7 @@ public sealed class TaskStatusProgression : ValueObject
 
         if (idx < 0 || idx + 1 >= _order.Length)
         {
-            throw new DomainException($"No next status defined after {Current}");
+            throw new DomainException($"No next status defined after {Current}.");
         }
 
         return new(_order[idx + 1]);
