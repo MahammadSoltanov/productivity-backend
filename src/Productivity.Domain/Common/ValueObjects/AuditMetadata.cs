@@ -6,5 +6,5 @@ public record AuditMetadata(
     UserId? ModifierId = null,
     DateTime? ModifiedAt = null)
 {
-    public AuditMetadata WithModification(UserId modifier, DateTime when) => this with { ModifierId = modifier, ModifiedAt = when };
+    public AuditMetadata WithModification(UserId modifierId, DateTime when) => this with { ModifierId = modifierId, ModifiedAt = when };
 }
