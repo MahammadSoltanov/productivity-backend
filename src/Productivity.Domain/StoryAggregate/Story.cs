@@ -11,6 +11,7 @@ public sealed class Story : AggregateRoot<StoryId>
     private List<SubtaskId> _subtasks = new();
     private List<FileId> _attachments = new();
     private List<string> _tags = new();
+    private List<StoryComment> _comments = new();
 
     public EpicId EpicId { get; }
     public UserId? AssigneeId { get; }
@@ -29,6 +30,7 @@ public sealed class Story : AggregateRoot<StoryId>
 
     public IReadOnlyCollection<FileId> Attachments => _attachments.AsReadOnly();
     public IReadOnlyCollection<string> Tags => _tags.AsReadOnly();
+    public IReadOnlyCollection<StoryComment> Comments => _comments.AsReadOnly();
 
     public AuditMetadata AuditMetadata { get; }
 
