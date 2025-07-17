@@ -4,4 +4,5 @@ public enum CompanyRole
     Admin,
     Manager,
     Employee,
+    Viewer
 }
