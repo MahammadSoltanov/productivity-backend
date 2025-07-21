@@ -1,4 +1,5 @@
 ﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 
 namespace Productivity.Domain.EpicAggregate.Entities;
 public sealed class EpicDependency : Entity<EpicDependencyId>
@@ -6,7 +7,7 @@ public sealed class EpicDependency : Entity<EpicDependencyId>
     public EpicId DependentId { get; }
     public EpicId PrerequisiteId { get; }
     public string? Reason { get; }
-    public DateTime CreatedAt { get; }
+    public DateTimeOffset CreatedAt { get; }
     public UserId CreatorId { get; }
     internal EpicDependency(EpicDependencyId id,
                             EpicId dependentId,
@@ -18,7 +19,7 @@ public sealed class EpicDependency : Entity<EpicDependencyId>
         PrerequisiteId = prerequisiteId;
         CreatorId = creatorId;
         Reason = reason;
-        CreatedAt = DateTime.UtcNow;
+        CreatedAt = DomainTime.Current.UtcNow;
     }
 
     public static EpicDependency Create(EpicId dependentId,

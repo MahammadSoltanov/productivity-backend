@@ -1,5 +1,6 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.StoryAggregate.Entities;
 
@@ -38,7 +39,7 @@ public sealed class Story : AggregateRoot<StoryId>
     {
         Title = title;
         EpicId = epicId;
-        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
+        AuditMetadata = new AuditMetadata(creatorId, DomainTime.Current.UtcNow);
     }
 
     public Story Create(string title, EpicId epicId, UserId creatorId)

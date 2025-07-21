@@ -1,4 +1,5 @@
 ﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 
 namespace Productivity.Domain.CompanyAggregate;
@@ -23,7 +24,7 @@ public sealed class Company : AggregateRoot<CompanyId>
     {
         Name = name;
         OwnerId = creatorId;
-        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
+        AuditMetadata = new AuditMetadata(creatorId, DomainTime.Current.UtcNow);
     }
 
     public static Company Create(string name, UserId creatorId)

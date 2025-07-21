@@ -1,5 +1,6 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.EpicAggregate.Entities;
 
@@ -44,7 +45,7 @@ public sealed class Epic : AggregateRoot<EpicId>
     {
         Title = title;
         WorkspaceId = workspaceId;
-        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
+        AuditMetadata = new AuditMetadata(creatorId, DomainTime.Current.UtcNow);
     }
 
     public Epic Create(string title, WorkspaceId workspaceId, UserId creatorId)

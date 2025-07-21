@@ -1,6 +1,7 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 
 namespace Productivity.Domain.WorkspaceAggregate.Entities;
@@ -23,8 +24,8 @@ public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
 
     public static TeamWorkspaceMembership Create(
         TeamId teamId,
-        DateTime validFrom,
-        DateTime? validTo = null
+        DateTimeOffset validFrom,
+        DateTimeOffset? validTo = null
     )
     {
         var period = new DateRange(validFrom, validTo);
@@ -35,7 +36,7 @@ public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
         );
     }
 
-    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
+    public bool IsActiveAt(DateTimeOffset at) => ValidityPeriod.IsWithinRange(at);
 
     public void End()
     {
@@ -46,6 +47,6 @@ public sealed class TeamWorkspaceMembership : Entity<TeamWorkspaceMembershipId>
 
         Status = MembershipStatus.Removed;
 
-        ValidityPeriod = new DateRange(ValidityPeriod.From, DateTime.UtcNow);
+        ValidityPeriod = new DateRange(ValidityPeriod.From, DomainTime.Current.UtcNow);
     }
 }

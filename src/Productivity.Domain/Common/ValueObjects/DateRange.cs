@@ -4,10 +4,10 @@ namespace Productivity.Domain.Common.ValueObjects;
 
 public sealed class DateRange : ValueObject
 {
-    public DateTime From { get; }
-    public DateTime? To { get; }
+    public DateTimeOffset From { get; }
+    public DateTimeOffset? To { get; }
 
-    internal DateRange(DateTime from, DateTime? to = null)
+    internal DateRange(DateTimeOffset from, DateTimeOffset? to = null)
     {
         if (to.HasValue && to < from)
         {
@@ -20,15 +20,15 @@ public sealed class DateRange : ValueObject
 
     public static DateRange Empty()
     {
-        return new(DateTime.MinValue, null);
+        return new(DateTimeOffset.MinValue, null);
     }
 
-    public DateRange WithEnd(DateTime to)
+    public DateRange WithEnd(DateTimeOffset to)
     {
         return new DateRange(From, to);
     }
 
-    internal bool IsWithinRange(DateTime date)
+    internal bool IsWithinRange(DateTimeOffset date)
     {
         return date >= From && (!To.HasValue || date <= To.Value);
     }

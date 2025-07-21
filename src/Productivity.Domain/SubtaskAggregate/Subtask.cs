@@ -1,5 +1,6 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.EpicAggregate.Entities;
 using Productivity.Domain.SubtaskAggregate.Entities;
@@ -39,7 +40,7 @@ public sealed class Subtask : AggregateRoot<SubtaskId>
     {
         Title = title;
         StoryId = storyId;
-        AuditMetadata = new AuditMetadata(creatorId, DateTime.UtcNow);
+        AuditMetadata = new AuditMetadata(creatorId, DomainTime.Current.UtcNow);
     }
 
     public Subtask CreateForStory(string title, StoryId storyId, UserId creatorId)

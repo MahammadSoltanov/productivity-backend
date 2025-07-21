@@ -1,4 +1,5 @@
 ﻿using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 
 namespace Productivity.Domain.StoryAggregate.Entities;
 public sealed class StoryDependency : Entity<StoryDependencyId>
@@ -7,7 +8,7 @@ public sealed class StoryDependency : Entity<StoryDependencyId>
     public StoryId PrerequisiteId { get; }
     public string? Reason { get; }
     public UserId CreatorId { get; set; }
-    public DateTime CreatedAt { get; }
+    public DateTimeOffset CreatedAt { get; }
 
     private StoryDependency(StoryDependencyId id,
                             StoryId dependentId,
@@ -19,7 +20,7 @@ public sealed class StoryDependency : Entity<StoryDependencyId>
         PrerequisiteId = prerequisiteId;
         CreatorId = creatorId;
         Reason = reason;
-        CreatedAt = DateTime.UtcNow;
+        CreatedAt = DomainTime.Current.UtcNow;
     }
 
     public static StoryDependency Create(StoryId dependentId, StoryId prerequisiteId, UserId creatorId, string? reason = null)

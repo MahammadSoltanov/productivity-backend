@@ -1,6 +1,7 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 using Productivity.Domain.Common.ValueObjects;
 using Productivity.Domain.CompanyAggregate.Enumerations;
 
@@ -16,7 +17,7 @@ public class UserCompanyMembership : Entity<UserCompanyMembershipId>
     {
         UserId = userId;
         Role = role;
-        ValidityPeriod = new DateRange(DateTime.UtcNow);
+        ValidityPeriod = new DateRange(DomainTime.Current.UtcNow);
     }
 
     public static UserCompanyMembership Create(UserId userId, CompanyRole role)
@@ -24,7 +25,7 @@ public class UserCompanyMembership : Entity<UserCompanyMembershipId>
         return new(UserCompanyMembershipId.CreateUnique(), userId, role);
     }
 
-    public bool IsActiveAt(DateTime at) => ValidityPeriod.IsWithinRange(at);
+    public bool IsActiveAt(DateTimeOffset at) => ValidityPeriod.IsWithinRange(at);
 
     public void End()
     {
@@ -35,6 +36,6 @@ public class UserCompanyMembership : Entity<UserCompanyMembershipId>
 
         Status = MembershipStatus.Removed;
 
-        ValidityPeriod = new DateRange(ValidityPeriod.From, DateTime.UtcNow);
+        ValidityPeriod = new DateRange(ValidityPeriod.From, DomainTime.Current.UtcNow);
     }
 }

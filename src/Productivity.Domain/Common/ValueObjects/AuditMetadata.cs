@@ -2,9 +2,9 @@
 
 public record AuditMetadata(
     UserId CreatorId,
-    DateTime CreatedAt,
+    DateTimeOffset CreatedAt,
     UserId? ModifierId = null,
-    DateTime? ModifiedAt = null)
+    DateTimeOffset? ModifiedAt = null)
 {
-    public AuditMetadata WithModification(UserId modifierId, DateTime when) => this with { ModifierId = modifierId, ModifiedAt = when };
+    public AuditMetadata WithModification(UserId modifierId, DateTimeOffset when) => this with { ModifierId = modifierId, ModifiedAt = when };
 }

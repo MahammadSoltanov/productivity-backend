@@ -25,7 +25,7 @@ public abstract class TaskStateHistoryEntry<TId, TTaskId> : Entity<TId> where TI
         ValidityPeriod = validityPeriod;
     }
 
-    public void ClosePeriod(DateTime end)
+    public void ClosePeriod(DateTimeOffset end)
     {
         if (ValidityPeriod.To.HasValue)
         {

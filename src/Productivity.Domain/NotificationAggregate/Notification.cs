@@ -1,6 +1,7 @@
 ﻿using Productivity.Domain.Common.Enumerations;
 using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 
 namespace Productivity.Domain.NotificationAggregate;
 public sealed class Notification : AggregateRoot<NotificationId>
@@ -9,9 +10,9 @@ public sealed class Notification : AggregateRoot<NotificationId>
     public NotificationType Type { get; }
     public NotificationChannel Channel { get; }
     public string Content { get; }
-    public DateTime CreatedAt { get; }
+    public DateTimeOffset CreatedAt { get; }
     public NotificationStatus Status { get; private set; }
-    public DateTime? ReadAt { get; private set; }
+    public DateTimeOffset? ReadAt { get; private set; }
 
     private Notification(
       NotificationId id,
@@ -19,7 +20,7 @@ public sealed class Notification : AggregateRoot<NotificationId>
       NotificationType type,
       NotificationChannel channel,
       string content,
-      DateTime createdAt) : base(id)
+      DateTimeOffset createdAt) : base(id)
     {
         RecipientId = recipientId;
         Type = type;
@@ -36,7 +37,9 @@ public sealed class Notification : AggregateRoot<NotificationId>
       string content)
     {
         if (string.IsNullOrWhiteSpace(content))
+        {
             throw new DomainException("Notification content cannot be empty.");
+        }
 
         return new(
           NotificationId.CreateUnique(),
@@ -44,13 +47,15 @@ public sealed class Notification : AggregateRoot<NotificationId>
           type,
           channel,
           content,
-          DateTime.UtcNow);
+          DomainTime.Current.UtcNow);
     }
 
-    public void MarkAsRead(DateTime when)
+    public void MarkAsRead(DateTimeOffset when)
     {
         if (Status != NotificationStatus.Unread)
+        {
             throw new DomainException("Only unread notifications can be marked as read.");
+        }
 
         Status = NotificationStatus.Read;
         ReadAt = when;
@@ -59,7 +64,9 @@ public sealed class Notification : AggregateRoot<NotificationId>
     public void Dismiss()
     {
         if (Status == NotificationStatus.Dismissed)
+        {
             throw new DomainException("Notification is already dismissed.");
+        }
 
         Status = NotificationStatus.Dismissed;
     }

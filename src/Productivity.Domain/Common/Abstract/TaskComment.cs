@@ -1,13 +1,14 @@
 ﻿using Productivity.Domain.Common.Exceptions;
 using Productivity.Domain.Common.Models;
+using Productivity.Domain.Common.Time;
 
 namespace Productivity.Domain.Common.Abstract;
 public abstract class TaskComment<TId> : Entity<TId> where TId : notnull
 {
     public UserId AuthorId { get; }
     public string Text { get; private set; }
-    public DateTime CreatedAt { get; }
-    public DateTime? EditedAt { get; private set; }
+    public DateTimeOffset CreatedAt { get; }
+    public DateTimeOffset? EditedAt { get; private set; }
     public bool IsDeleted { get; private set; }
 
     internal TaskComment(
@@ -17,7 +18,7 @@ public abstract class TaskComment<TId> : Entity<TId> where TId : notnull
     {
         AuthorId = authorId;
         Text = text;
-        CreatedAt = DateTime.UtcNow;
+        CreatedAt = DomainTime.Current.UtcNow;
     }
 
     public void Edit(string newText)
@@ -28,7 +29,7 @@ public abstract class TaskComment<TId> : Entity<TId> where TId : notnull
         }
 
         Text = newText;
-        EditedAt = DateTime.UtcNow;
+        EditedAt = DomainTime.Current.UtcNow;
     }
 
     public void Delete()
