@@ -10,5 +10,3 @@ Core domain modeling and basic API structure are implemented. User authenticatio
 - Run the ASP.NET Core Web API project  
 
 Frontend will be maintained in a separate repository.
-
-Check "develop" branch to see actual work progress.
