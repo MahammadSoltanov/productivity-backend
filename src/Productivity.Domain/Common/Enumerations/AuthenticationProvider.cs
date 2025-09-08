@@ -4,5 +4,4 @@ public enum AuthenticationProvider
 {
     Email,
     Google,
-    EmailAndGoogle
 }
